@@ -65,6 +65,7 @@ CREATE TABLE `t_car` (
   `price` decimal(10,2) DEFAULT NULL,
   `count` int(11) DEFAULT NULL,
   `time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `sku` json DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `product_id` (`product_id`)
@@ -72,7 +73,7 @@ CREATE TABLE `t_car` (
 
 /*Data for the table `t_car` */
 
-insert  into `t_car`(`id`,`user_id`,`product_id`,`price`,`count`,`time`) values (1,1,1,'7888.00',1,'2019-04-09 10:19:06'),(2,2,2,'580.00',1,'2019-04-09 10:19:18'),(3,3,3,'5800.00',1,'2019-04-09 10:19:54');
+insert  into `t_car`(`id`,`user_id`,`product_id`,`price`,`count`,`time`,`sku`) values (1,1,1,'7888.00',1,'2019-04-09 10:19:06',NULL),(2,2,2,'580.00',1,'2019-04-09 10:19:18',NULL),(3,3,3,'5800.00',1,'2019-04-09 10:19:54',NULL);
 
 /*Table structure for table `t_evaluate` */
 
@@ -108,6 +109,7 @@ CREATE TABLE `t_order` (
   `del` int(1) DEFAULT NULL,
   `stat` int(1) DEFAULT NULL,
   `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `sku` json DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `product_id` (`product_id`)
@@ -115,7 +117,7 @@ CREATE TABLE `t_order` (
 
 /*Data for the table `t_order` */
 
-insert  into `t_order`(`id`,`user_id`,`product_id`,`count`,`sum`,`del`,`stat`,`time`) values (1,4,2,2,1160,0,0,'2019-04-09 10:05:57'),(2,4,1,1,8888,0,1,'2019-04-09 10:06:26'),(3,4,3,1,5800,1,2,'2019-04-09 10:06:52');
+insert  into `t_order`(`id`,`user_id`,`product_id`,`count`,`sum`,`del`,`stat`,`time`,`sku`) values (1,4,2,2,1160,0,0,'2019-04-09 10:05:57',NULL),(2,4,1,1,8888,0,1,'2019-04-09 10:06:26',NULL),(3,4,3,1,5800,1,2,'2019-04-09 10:06:52',NULL);
 
 /*Table structure for table `t_product` */
 
@@ -135,7 +137,7 @@ CREATE TABLE `t_product` (
 
 /*Data for the table `t_product` */
 
-insert  into `t_product`(`id`,`type_id`,`shop_id`,`imgSrc`,`name`,`info`,`sku`,`time`) values (1,12,1,'暂无图片','iphone X','128GB 黑色 移动联通电信4G全网通手机 双卡双待','{\"size\": [\"6g+128g\", \"6+256g\", \"8+256g\"], \"price\": [2000, 2000, 2000, 2500, 2500, 2500, 3000, 3000, 3000], \"stock\": [10, 10, 10, 10, 10, 10, 10, 10, 10], \"style\": [\"黑色\", \"白色\", \"灰色\"]}','2019-04-17 13:42:52'),(2,8,2,'暂无图片','耐克','短袖圆领 时尚','{\"size\": [\"S\", \"L\", \"M\"], \"price\": [200, 200, 200, 200, 200, 200, 200, 200, 200], \"stock\": [10, 10, 10, 10, 10, 10, 10, 10, 10], \"style\": [\"T恤\", \"泡泡袖\", \"蝙蝠袖\"]}','2019-04-17 13:41:52'),(3,10,2,'暂无图片','手办','动漫，二次元','{\"size\": [\"大\", \"中\", \"小\"], \"price\": [2000, 2000, 2000, 2500, 2500, 2500, 3000, 3000, 3000], \"stock\": [10, 10, 10, 10, 10, 10, 10, 10, 10], \"style\": [\"初音\", \"弱音\", \"巡音\"]}','2019-04-17 13:43:52'),(4,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-17 13:45:52');
+insert  into `t_product`(`id`,`type_id`,`shop_id`,`imgSrc`,`name`,`info`,`sku`,`time`) values (1,12,1,'暂无图片','iphone X','128GB 黑色 移动联通电信4G全网通手机 双卡双待','{\"size\": [\"6g+128g\", \"6+256g\", \"8+256g\"], \"price\": [2000, 2000, 2000, 2500, 2500, 2500, 3000, 3000, 3000], \"stock\": [10, 10, 10, 10, 10, 10, 10, 10, 10], \"style\": [\"黑色\", \"白色\", \"灰色\"]}','2019-04-17 13:42:52'),(2,8,2,'暂无图片','耐克','短袖圆领 时尚','{\"size\": [\"S\", \"L\", \"M\"], \"price\": [200, 200, 200, 200, 200, 200, 200, 200, 200], \"stock\": [10, 10, 10, 10, 10, 10, 10, 10, 10], \"style\": [\"T恤\", \"泡泡袖\", \"蝙蝠袖\"]}','2019-04-17 13:41:52'),(3,10,2,'暂无图片','手办','动漫，二次元','{\"size\": [\"大\", \"中\", \"小\"], \"price\": [2000, 2000, 2000, 2500, 2500, 2500, 3000, 3000, 3000], \"stock\": [10, 10, 10, 10, 10, 10, 10, 10, 10], \"style\": [\"初音\", \"弱音\", \"巡音\"]}','2019-04-17 13:43:52');
 
 /*Table structure for table `t_role` */
 
