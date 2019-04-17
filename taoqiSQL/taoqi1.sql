@@ -30,8 +30,7 @@ CREATE TABLE `t_apply` (
   `stat` int(1) DEFAULT NULL,
   `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `t_apply_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`id`)
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `t_apply` */
@@ -48,9 +47,7 @@ CREATE TABLE `t_auth` (
   `role_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  KEY `role_id` (`role_id`),
-  CONSTRAINT `t_auth_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`id`),
-  CONSTRAINT `t_auth_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `t_role` (`id`)
+  KEY `role_id` (`role_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `t_auth` */
@@ -70,9 +67,7 @@ CREATE TABLE `t_car` (
   `time` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  KEY `product_id` (`product_id`),
-  CONSTRAINT `t_car_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`id`),
-  CONSTRAINT `t_car_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `t_product` (`id`)
+  KEY `product_id` (`product_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `t_car` */
@@ -93,14 +88,12 @@ CREATE TABLE `t_evaluate` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `order_id` (`order_id`),
-  KEY `reply_id` (`reply_id`),
-  CONSTRAINT `t_evaluate_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`id`),
-  CONSTRAINT `t_evaluate_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `t_order` (`id`)
+  KEY `reply_id` (`reply_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `t_evaluate` */
 
-insert  into `t_evaluate`(`id`,`user_id`,`order_id`,`reply_id`,`star`,`info`) values (1,4,1,0,5,'物流速度挺快的'),(2,4,1,1,NULL,'谢谢您的好评'),(3,4,3,0,3,'质量不怎么样'),(4,1,3,3,NULL,'谢谢您的意见，我会进行改进的');
+insert  into `t_evaluate`(`id`,`user_id`,`order_id`,`reply_id`,`star`,`info`) values (2,4,1,1,NULL,'谢谢您的好评'),(3,4,3,0,3,'质量不怎么样'),(4,1,3,3,NULL,'谢谢您的意见，我会进行改进的');
 
 /*Table structure for table `t_order` */
 
@@ -117,9 +110,7 @@ CREATE TABLE `t_order` (
   `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  KEY `product_id` (`product_id`),
-  CONSTRAINT `t_order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`id`),
-  CONSTRAINT `t_order_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `t_product` (`id`)
+  KEY `product_id` (`product_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `t_order` */
@@ -137,15 +128,14 @@ CREATE TABLE `t_product` (
   `imgSrc` varchar(255) DEFAULT NULL,
   `name` varchar(55) DEFAULT NULL,
   `info` varchar(255) DEFAULT NULL,
-  `price` float DEFAULT NULL,
-  `stock` int(11) DEFAULT NULL,
+  `sku` json DEFAULT NULL,
   `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `t_product` */
 
-insert  into `t_product`(`id`,`type_id`,`shop_id`,`imgSrc`,`name`,`info`,`price`,`stock`,`time`) values (1,12,1,'暂无图片','iphone X','128GB 黑色 移动联通电信4G全网通手机 双卡双待',8888,100,'2019-04-06 19:44:23'),(2,8,2,'暂无图片','耐克','短袖圆领 黑色',580,150,'2019-04-09 09:58:23'),(3,10,2,'暂无图片','沙发','布艺沙发',5800,200,'2019-04-09 09:59:41');
+insert  into `t_product`(`id`,`type_id`,`shop_id`,`imgSrc`,`name`,`info`,`sku`,`time`) values (1,12,1,'暂无图片','iphone X','128GB 黑色 移动联通电信4G全网通手机 双卡双待','{\"size\": [\"6g+128g\", \"6+256g\", \"8+256g\"], \"price\": [2000, 2000, 2000, 2500, 2500, 2500, 3000, 3000, 3000], \"stock\": [10, 10, 10, 10, 10, 10, 10, 10, 10], \"style\": [\"黑色\", \"白色\", \"灰色\"]}','2019-04-17 13:42:52'),(2,8,2,'暂无图片','耐克','短袖圆领 时尚','{\"size\": [\"S\", \"L\", \"M\"], \"price\": [200, 200, 200, 200, 200, 200, 200, 200, 200], \"stock\": [10, 10, 10, 10, 10, 10, 10, 10, 10], \"style\": [\"T恤\", \"泡泡袖\", \"蝙蝠袖\"]}','2019-04-17 13:41:52'),(3,10,2,'暂无图片','手办','动漫，二次元','{\"size\": [\"大\", \"中\", \"小\"], \"price\": [2000, 2000, 2000, 2500, 2500, 2500, 3000, 3000, 3000], \"stock\": [10, 10, 10, 10, 10, 10, 10, 10, 10], \"style\": [\"初音\", \"弱音\", \"巡音\"]}','2019-04-17 13:43:52'),(4,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-17 13:45:52');
 
 /*Table structure for table `t_role` */
 
@@ -172,8 +162,7 @@ CREATE TABLE `t_shop` (
   `info` varchar(255) DEFAULT NULL,
   `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `t_shop_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`id`)
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `t_shop` */
@@ -191,8 +180,7 @@ CREATE TABLE `t_spread` (
   `imgSrc` varchar(255) DEFAULT NULL,
   `price` float DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `t_spread_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`id`)
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `t_spread` */
@@ -209,11 +197,11 @@ CREATE TABLE `t_type` (
   `parent` int(11) DEFAULT NULL,
   `flag` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `t_type` */
 
-insert  into `t_type`(`id`,`name`,`parent`,`flag`) values (1,'电子3C',0,0),(2,'食品',0,0),(3,'手机',1,0),(4,'电脑',1,0),(7,'图像影音',0,0),(8,'服装',0,0),(9,'家电数码',0,0),(10,'家具',0,0),(11,'美妆护肤',0,0),(12,'苹果',3,0),(13,'小米',3,0),(14,'oppo',3,0),(15,'苹果',4,0),(16,'华硕',4,0),(17,'联想',4,0);
+insert  into `t_type`(`id`,`name`,`parent`,`flag`) values (1,'电子3C',0,0),(2,'食品',0,0),(3,'服装',1,0),(4,'首饰',1,0),(6,'生活用品',0,0),(7,'家电',0,0),(8,'手机',0,0),(10,'电脑',0,0),(11,'苹果',8,0),(12,'小米',8,0),(13,'oppo',8,0),(14,'苹果',9,0),(15,'华硕',9,0),(16,'联想',9,0),(18,'男装',3,0),(19,'女装',3,0),(20,'男鞋',3,0),(21,'女鞋',3,0),(22,'生鲜',2,0),(23,'美食',2,0),(24,'零食',2,0),(25,'手表',4,0),(26,'眼镜',4,0),(27,'珠宝',4,0),(28,'洗发水',6,0),(29,'沐浴露',6,0),(30,'拖把',6,0),(31,'电视机',7,0),(32,'电冰箱',7,0),(33,'电风扇',7,0);
 
 /*Table structure for table `t_user` */
 
@@ -262,7 +250,7 @@ DROP TABLE IF EXISTS `v_evaluate`;
 
 /*!50001 CREATE TABLE  `v_evaluate`(
  `id` int(11) ,
- `user_name` varchar(55) ,
+ `nick_name` varchar(55) ,
  `order_id` int(11) ,
  `reply_id` int(11) ,
  `star` int(11) 
@@ -280,7 +268,7 @@ DROP TABLE IF EXISTS `v_evaluate`;
 /*!50001 DROP TABLE IF EXISTS `v_evaluate` */;
 /*!50001 DROP VIEW IF EXISTS `v_evaluate` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_evaluate` AS select `e`.`id` AS `id`,`u`.`user_name` AS `user_name`,`e`.`order_id` AS `order_id`,`e`.`reply_id` AS `reply_id`,`e`.`star` AS `star` from (`t_evaluate` `e` join `t_user` `u`) where (`e`.`id` = `u`.`id`) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_evaluate` AS select `e`.`id` AS `id`,`u`.`nick_name` AS `nick_name`,`e`.`order_id` AS `order_id`,`e`.`reply_id` AS `reply_id`,`e`.`star` AS `star` from (`t_evaluate` `e` join `t_user` `u`) where (`e`.`id` = `u`.`id`) */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
