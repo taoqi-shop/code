@@ -1,0 +1,14 @@
+server:
+  port: 10086
+
+fileServer:
+  host: localhost:${server.port}
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/files

@@ -1,0 +1,23 @@
+server:
+  port: 8011
+spring:
+  application:
+    name: car-service
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/taoqi?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT
+  data:
+    repositories:
+      enabled: true
+    elasticsearch:
+      cluster-nodes: 127.0.0.1:9300
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.43.134:8761/eureka,http://192.168.43.134:8762/eureka
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
+    ip-address: 192.168.43.178
+    instance-id: ${spring.application.name}:${server.port}

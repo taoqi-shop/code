@@ -1,0 +1,21 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: type-service
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/taoqi?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT
+    type: com.alibaba.druid.pool.DruidDataSource
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka,http://127.0.0.1:8762/eureka
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}:${server.port}
+
+
