@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-    <title>待评价</title>
+    <title>待发货</title>
      <link rel="icon" href="assets/img/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="css/webbase.css" />
-	<link rel="stylesheet" type="text/css" href="css/pages-seckillOrder.css" />	
-	  <!--引入Vue.js-->
-	  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/pages-seckillOrder.css" />
+      <!--引入Vue.js-->
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-	  <!-- JS库 ajax 异步通信-->
+      <!-- JS库 ajax 异步通信-->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
- </head>
 </head>
 
 <body>
@@ -117,33 +116,6 @@ $(function(){
 <script type="text/javascript" src="js/plugins/sui/sui.min.js"></script>
 <script type="text/javascript" src="js/plugins/jquery-placeholder/jquery.placeholder.min.js"></script>
 <script type="text/javascript" src="js/widget/nav.js"></script>
-<script>
-		export default{
-			data(){
-				return{
-					userId:666,
-	　　　　　　　　　 token:'',
-				}
-			},
-			created(){
-				this.$axios({
-					method:'get',
-					url:'api/getList',
-					data:this.qs.stringify({    //这里是发送给后台的数据
-						  userId:this.userId,
-						  token:this.token,
-					})
-				}).then((response) =>{          //这里使用了ES6的语法
-					console.log(response)       //请求成功返回的数据
-				}).catch((error) =>{
-					console.log(error)       //请求失败返回的数据
-				})
-			}
-		}
-	</script>
-<script>
-
-</script>
 </body>
     <!--header-->
     <div id="account">
@@ -160,14 +132,14 @@ $(function(){
                         </div>
                         <div class="clearfix"></div>
                     </div>
-                     <div class="list-items">
+                    <div class="list-items">
                         <dl>
 							<dt><i>·</i> 订单中心</dt>
 							<dd ><a href="home-index.html"  >我的订单</a></dd>
 							<!-- <dd><a href="home-order-pay.html" >待付款</a></dd> -->
-							<dd><a href="home-order-send.html"  >待发货</a></dd>
+							<dd><a href="home-order-send.html"  class="list-active">待发货</a></dd>
 							<dd><a href="home-order-receive.html" >待收货</a></dd>
-							<dd><a href="home-order-evaluate.html"  class="list-active">待评价</a></dd>
+							<dd><a href="home-order-evaluate.html"  >待评价</a></dd>
 						</dl>
                     </div>
                 </div>
@@ -201,106 +173,77 @@ $(function(){
                                         </ul>
                                     </div>
                                 </div>
-                               
                                 <table class="sui-table table-bordered order-datatable">
-										<tbody>
-											<tr  v-for="(o, index) in table3">
-													<td width="4%">
-															<div class="typographic">
-																<a href="#" class="block-text">{{o.id}}</a>
-															   
-															</div>
-														</td>
-												<td width="31%">
-													<div class="typographic"><img src="img/goods.png" />
-														<a href="#" class="block-text">{{o.productId}}</a>
-														<span class="guige">规格：{{o.sku}}</span>
-													</div>
-												</td>
-												<td width="5%" class="center">
-													<ul class="unstyled">
-														
-														<li>{{o.count}}</li>
-													</ul>
-												</td>
-												<td width="5%" class="center">{{o.sum}}</td>
-												<td width="8%" class="center">
-														已收货
-												</td>
-												<td width="10%" class="center" >
-													<ul class="unstyled">
-														
-														<li>{{o.time}}</li>
-													</ul>
-												</td>
-												<td width="10%" class="center">
-													<ul class="unstyled">
-														<li>待评价</li>
-													  
-													</ul>
-												</td>
-												<td width="10%" class="center">
-													<ul class="unstyled">
-														<button type="button"  class="btn btn-primary" style="width:80px">评价</button>
-														<button type="button" @click="clear1(o.id)" class="btn btn-primary" style="width:80px">删除订单</button>	
-														
-													</ul>
-												</td>
-											</tr>
-	
-	
-										</tbody>
-									</table>
-	
-									<table class="sui-table table-bordered order-datatable">
-										<tbody>
-											 
-											<tr v-for="(o, index) in table1" >
-												<td width="4%">
-													<div class="typographic">
-														<a href="#" class="block-text">{{o.id}}</a>
-																
-													</div>
-												</td>
-												<td width="31%">
-													<div class="typographic"><img src="img/goods.png" />
-														<a href="#" class="block-text">{{o.productId}}</a>
-														<span class="guige">规格：{{o.sku}}</span>
-													</div>
-												</td>
-												<td width="5%" class="center">
-													<ul class="unstyled">
-																
-														<li>{{o.count}}</li>
-													</ul>
-												</td>
-												<td width="5%" class="center">{{o.sum}}</td>
-												<td width="8%" class="center">
-													未发货
-												</td>
-												<td width="10%" class="center" >
-													<ul class="unstyled">
-															
-														<li>{{o.time}}</li>
-													</ul>
-												</td>
-												<td width="10%" class="center">
-													<ul class="unstyled">
-														<li>待发货</li>
-														
-													</ul>
-												</td>
-												<td width="10%" class="center">
-													<ul class="unstyled">
-														<button type="button"  class="btn btn-primary" style="width:80px">催发货</button>
-														<button type="button" @click="clear(o.id)" class="btn btn-primary" style="width:80px">取消订单</button>																	
-													</ul>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-							</div>
-						</div>
+                                        <tbody>
+                                         
+                                            <tr v-for="(o, index) in table1" >
+                                                    <td width="4%">
+                                                            <div class="typographic">
+                                                                <a href="#" class="block-text">{{o.id}}</a>
+                                                               
+                                                            </div>
+                                                        </td>
+                                                <td width="31%">
+                                                    <div class="typographic"><img src="img/goods.png" />
+                                                        <a href="#" class="block-text">{{o.productId}}</a>
+                                                        <span class="guige">规格：{{o.sku}}</span>
+                                                    </div>
+                                                </td>
+                                                <td width="5%" class="center">
+                                                    <ul class="unstyled">
+                                                        
+                                                        <li>{{o.count}}</li>
+                                                    </ul>
+                                                </td>
+                                                <td width="5%" class="center">{{o.sum}}</td>
+                                                <td width="8%" class="center">
+                                                   未发货
+                                                </td>
+                                                <td width="10%" class="center" >
+                                                    <ul class="unstyled">
+                                                        
+                                                        <li>{{o.time}}</li>
+                                                    </ul>
+                                                </td>
+                                                <td width="10%" class="center">
+                                                    <ul class="unstyled">
+                                                        <li>待发货</li>
+                                                      
+                                                    </ul>
+                                                </td>
+                                                <td width="10%" class="center">
+                                                    <ul class="unstyled">
+														<button type="button" @click="clear(o.id)" class="btn btn-primary" style="width:80px">确任发货</button>
+                                                        <!-- <li>取消订单</li> -->
+                                                        
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            
+    
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div class="choose-order">
+
+                                <div class="sui-pagination pagination-large top-pages">
+                                    <ul>
+                                        <li class="prev disabled"><a href="#">«上一页</a></li>
+                                        <li class="active"><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li class="dotted"><span>...</span></li>
+                                        <li class="next"><a href="#">下一页»</a></li>
+                                    </ul>
+                                    <div><span>共10页&nbsp;</span><span>
+                                            到
+                                            <input type="text" class="page-num"><button class="page-confirm" onclick="alert(1)">确定</button>
+                                            页</span></div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -438,81 +381,43 @@ $(function(){
 		</div>
 	</div>
 </div>
-
+<!--页面底部END-->
 <!--Vue脚本-->
 <script>
-        let vm=new Vue({
-            el:'#app',
-            data:{
-				table1:[           
-                 ],
+    let vm=new Vue({
+        el:'#app',
+        data:{
+            table1:[           
+             ]
+        },
+        // 方法
+        methods: {
+            init: function(){
+              axios.get('http://localhost:8080/getUserList1')
+              .then((response) => {
+                this.table1=response.data;
+                console.log(this.table1);
                 
-                 table3:[           
-                 ]
-				 
-            },
-            // 方法
-            methods: {
-                init: function(){
-
-                    let _this=this
-                  axios.get('http://localhost:8080/getUserList1')
-                  .then((response) => {
-                    _this.table1=response.data;
-                    console.log(_this.table1);
-                    
-                  })
-                  .catch(function (error) {
-                    console.log(error);
-                  });
-
-                  axios.get('http://localhost:8080/getUserList3')
-                  .then((response) => {
-                    _this.table3=response.data;
-                    console.log(_this.table3);
-                    
-                  })
-                  .catch(function (error) {
-                    console.log(error);
-                  });
-
-                },
-				clear1:function(id){  
+              })
+              .catch(function (error) {
+              })
+            }
+        },
+        mounted() {
+            this.init();
+          },
+		  clear:function(id){  
 					const params=new URLSearchParams();
 					params.append('id',this.id);
-					axios.post('http://localhost:8080/putChangeOrder', params)
-					.then( (response)=> {						
-					})
-					.catch(function (error) {
-					});
-					axios.get('http://localhost:8080/getUserList3')
-                  .then((response) => {
-                    _this.table3=response.data;
-                    console.log(_this.table3);
-                    
-                  })
-                  .catch(function (error) {
-                    console.log(error);
-                  });
-                   
-                 },
-
-
-				 clear:function(id){ 
-					 console.log('进入了方法');
-					 console.log('id='+id);
-					let _this=this 
-					const params=new URLSearchParams();
-					params.append('id',this.id);
-					axios.post('http://localhost:8080/putChangeOrder/'+id )
+					axios.post('http://localhost:8080/putUpdateOrder', params)
 					.then( (response)=> {						
 					})
 					.catch(function (error) {
 					});
 					axios.get('http://localhost:8080/getUserList1')
                   .then((response) => {
-                    _this.table1=response.data;
-                    console.log(_this.table1);
+                    _this.table3=response.data;
+                    console.log(_this.table3);
                     
                   })
                   .catch(function (error) {
@@ -520,16 +425,8 @@ $(function(){
                   });
                    
                  },
-
-            },
-            mounted() {
-                this.init();
-				
-              },
-        });
-    </script>
-<!--页面底部END-->
-
+    });
+</script>
 undefined
 
 </html>
