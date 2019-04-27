@@ -9,7 +9,12 @@
      <link rel="icon" href="assets/img/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="css/webbase.css" />
-    <link rel="stylesheet" type="text/css" href="css/pages-seckillOrder.css" />
+	<link rel="stylesheet" type="text/css" href="css/pages-seckillOrder.css" />
+	 <!--引入Vue.js-->
+     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+     <!-- JS库 ajax 异步通信-->
+ <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -69,18 +74,6 @@
 								</div>
 							</form>
 						</div>
-						<div class="hotwords">
-							<ul>
-								<li class="f-item">品优购首发</li>
-								<li class="f-item">亿元优惠</li>
-								<li class="f-item">9.9元团购</li>
-								<li class="f-item">每满99减30</li>
-								<li class="f-item">亿元优惠</li>
-								<li class="f-item">9.9元团购</li>
-								<li class="f-item">办公用品</li>
-
-							</ul>
-						</div>
 					</div>
 					<div class="yui3-u Right shopArea">
 						<div class="fr shopcar">
@@ -97,25 +90,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="yui3-g NavList">
-					<div class="yui3-u Left all-sort">
-						<h4>全部商品分类</h4>
-					</div>
-					<div class="yui3-u Center navArea">
-						<ul class="nav">
-							<li class="f-item">服装城</li>
-							<li class="f-item">美妆馆</li>
-							<li class="f-item">品优超市</li>
-							<li class="f-item">全球购</li>
-							<li class="f-item">闪购</li>
-							<li class="f-item">团购</li>
-							<li class="f-item">有趣</li>
-							<li class="f-item"><a href="seckill-index.html" target="_blank">秒杀</a></li>
-						</ul>
-					</div>
-					<div class="yui3-u Right"></div>
 				</div>
 			</div>
 		</div>
@@ -162,41 +136,29 @@ $(function(){
                         <dl>
 							<dt><i>·</i> 订单中心</dt>
 							<dd ><a href="home-index.html"  >我的订单</a></dd>
-							<dd><a href="home-order-pay.html" >待付款</a></dd>
+							<!-- <dd><a href="home-order-pay.html" >待付款</a></dd> -->
 							<dd><a href="home-order-send.html"  >待发货</a></dd>
 							<dd><a href="home-order-receive.html" class="list-active">待收货</a></dd>
 							<dd><a href="home-order-evaluate.html"  >待评价</a></dd>
 						</dl>
-						<dl>
-							<dt><i>·</i> 我的中心</dt>
-							<dd><a href="home-person-collect.html">我的收藏</a></dd>
-							<dd><a href="home-person-footmark.html">我的足迹</a></dd>
-						</dl>
-						<dl>
-							<dt><i>·</i> 物流消息</dt>
-						</dl>
-						<dl>
-							<dt><i>·</i> 设置</dt>
-							<dd><a href="home-setting-info.html">个人信息</a></dd>
-							<dd><a href="home-setting-address.html"  >地址管理</a></dd>
-							<dd><a href="home-setting-safe.html" >安全管理</a></dd>
-						</dl>
+						
                     </div>
                 </div>
                 <!--右侧主内容-->
-                <div class="yui3-u-5-6 order-pay">
+                <div id="app" class="yui3-u-5-6 order-pay">
                     <div class="body">
                         <div class="table-title">
                             <table class="sui-table  order-table">
                                 <tr>
                                     <thead>
-                                        <th width="35%">宝贝</th>
-                                        <th width="5%">单价</th>
-                                        <th width="5%">数量</th>
-                                        <th width="8%">商品操作</th>
-                                        <th width="10%">实付款</th>
-                                        <th width="10%">交易状态</th>
-                                        <th width="10%">交易操作</th>
+										<th width="4%">编号</th>
+										<th width="31%">宝贝</th>
+										<th width="5%">数量</th>
+										<th width="5%">总价</th>
+										<th width="8%">商品操作</th>
+										<th width="10%">订单时间</th>
+										<th width="10%">交易状态</th>
+										<th width="10%">交易操作</th>
                                     </thead>
                                 </tr>
                             </table>
@@ -212,106 +174,104 @@ $(function(){
                                         </ul>
                                     </div>
                                 </div>
-                                <!--order1-->
-                                <div class="choose-title">
-                                    <label data-toggle="checkbox" class="checkbox-pretty ">
-                                           <input type="checkbox" checked="checked"><span>2017-02-11 11:59　订单编号：7867473872181848  店铺：哇哈哈 <a>和我联系</a></span>
-                                     </label>
-                                    <a class="sui-btn btn-info share-btn">分享</a>
-                                </div>
-                                <table class="sui-table table-bordered order-datatable">
-                                    <tbody>
-                                        <tr>
-                                            <td width="35%">
-                                                <div class="typographic"><img src="img/goods.png" />
-                                                    <a href="#" class="block-text">包邮 正品玛姬儿压缩面膜无纺布纸膜100粒 送泡瓶面膜刷喷瓶 新款</a>
-                                                    <span class="guige">规格：温泉喷雾150ml</span>
-                                                </div>
-                                            </td>
-                                            <td width="5%" class="center">
-                                                <ul class="unstyled">
-                                                    <li class="o-price">¥599.00</li>
-                                                    <li>¥299.00</li>
-                                                </ul>
-                                            </td>
-                                            <td width="5%" class="center">1</td>
-                                            <td width="8%" class="center">
-                                                <ul class="unstyled">
-                                                    <li><a>退货/退款</a></li>
-                                                </ul>
-                                            </td>
-                                            <td width="10%" class="center">
-                                                <ul class="unstyled">
-                                                    <li>¥299.00</li>
-                                                    <li>（含运费：￥0.00）</li>
-                                                </ul>
-                                            </td>
-                                            <td width="10%" class="center">
-                                                <ul class="unstyled">
-                                                    <li>物流派件中</li>                                                  
-                                                    <li><a href="orderDetail.html" class="btn">订单详情 </a></li>
-                                                </ul>
-                                            </td>
-                                            <td width="10%" class="center">
-                                                <ul class="unstyled">
-                                                    <li>还剩8天10小时</li>
-                                                    <li><a href="#" class="sui-btn btn-info">确认收货</a></li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                                <!--order2-->
-                                <div class="choose-title">
-                                    <label data-toggle="checkbox" class="checkbox-pretty ">
-                                           <input type="checkbox" checked="checked"><span>2017-02-11 11:59　订单编号：7867473872181848  店铺：哇哈哈 <a>和我联系</a></span>
-                                     </label>
-                                    <a class="sui-btn btn-info share-btn">分享</a>
-                                </div>
-                                <table class="sui-table table-bordered order-datatable">
-                                    <tbody>
-                                        <tr>
-                                            <td width="35%">
-                                                <div class="typographic"><img src="img/goods.png" />
-                                                    <a href="#" class="block-text">包邮 正品玛姬儿压缩面膜无纺布纸膜100粒 送泡瓶面膜刷喷瓶 新款</a>
-                                                    <span class="guige">规格：温泉喷雾150ml</span>
-                                                </div>
-                                            </td>
-                                            <td width="5%" class="center">
-                                                <ul class="unstyled">
-                                                    <li class="o-price">¥599.00</li>
-                                                    <li>¥299.00</li>
-                                                </ul>
-                                            </td>
-                                            <td width="5%" class="center">1</td>
-                                            <td width="8%" class="center">
-                                                <ul class="unstyled">
-
-                                                    <li><a>退货</a></li>
-                                                </ul>
-                                            </td>
-                                            <td width="10%" class="center">
-                                                <ul class="unstyled">
-                                                    <li>¥299.00</li>
-                                                    <li>（含运费：￥0.00）</li>
-                                                </ul>
-                                            </td>
-                                            <td width="10%" class="center">
-                                                <ul class="unstyled">
-                                                    <li>快件已签收</li>
-                                                    <li><a href="orderDetail.html" class="btn">订单详情 </a></li>
-                                                </ul>
-                                            </td>
-                                            <td width="10%" class="center">
-                                                <ul class="unstyled">
-                                                    <li>还剩8天10小时</li>
-                                                    <li><a href="#" class="sui-btn btn-info">提醒发货</a></li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+								<table class="sui-table table-bordered order-datatable mt-4">
+										<tbody>
+											<tr v-for="(o, index) in table2">
+													<td width="4%">
+															<div class="typographic">
+																<a href="#" class="block-text">{{o.id}}</a>
+															   
+															</div>
+														</td>
+												<td width="31%">
+													<div class="typographic"><img src="img/goods.png" />
+														<a href="#" class="block-text">{{o.productId}}</a>
+														<span class="guige">规格：{{o.sku}}</span>
+													</div>
+												</td>
+												<td width="5%" class="center">
+													<ul class="unstyled">
+														
+														<li>{{o.count}}</li>
+													</ul>
+												</td>
+												<td width="5%" class="center">{{o.sum}}</td>
+												<td width="8%" class="center">
+												   已发货
+												</td>
+												<td width="10%" class="center" >
+													<ul class="unstyled">
+														
+														<li>{{o.time}}</li>
+													</ul>
+												</td>
+												<td width="10%" class="center">
+													<ul class="unstyled">
+														<li>待收货</li>
+													  
+													</ul>
+												</td>
+												<td width="10%" class="center">
+													<ul class="unstyled">
+														<button type="button" @click="clear(o.id)" class="btn btn-primary" style="width:80px">确认收货</button>
+													</ul>
+												</td>
+											</tr>
+									 
+	
+										</tbody>
+									</table>
+                                             
+									<table class="sui-table table-bordered order-datatable">
+											<tbody>
+											 
+												<tr v-for="(o, index) in table1" >
+														<td width="4%">
+																<div class="typographic">
+																	<a href="#" class="block-text">{{o.id}}</a>
+																   
+																</div>
+															</td>
+													<td width="31%">
+														<div class="typographic"><img src="img/goods.png" />
+															<a href="#" class="block-text">{{o.productId}}</a>
+															<span class="guige">规格：{{o.sku}}</span>
+														</div>
+													</td>
+													<td width="5%" class="center">
+														<ul class="unstyled">
+															
+															<li>{{o.count}}</li>
+														</ul>
+													</td>
+													<td width="5%" class="center">{{o.sum}}</td>
+													<td width="8%" class="center">
+													   未发货
+													</td>
+													<td width="10%" class="center" >
+														<ul class="unstyled">
+															
+															<li>{{o.time}}</li>
+														</ul>
+													</td>
+													<td width="10%" class="center">
+														<ul class="unstyled">
+															<li>待发货</li>
+														  
+														</ul>
+													</td>
+													<td width="10%" class="center">
+														<ul class="unstyled">
+															<button type="button"  class="btn btn-primary" style="width:80px">催发货</button>
+															<button type="button" @click="clear1(o.id)" class="btn btn-primary" style="width:80px">取消订单</button>
+                                                        
+														</ul>
+													</td>
+												</tr>
+												
+		
+											</tbody>
+										</table>
                             </div>
                             <div class="choose-order">
 
@@ -332,93 +292,6 @@ $(function(){
                             </div>
 
                             <div class="clearfix"></div>
-                        </div>
-
-                        <div class="like-title">
-                            <div class="mt">
-                                <span class="fl"><strong>热卖单品</strong></span>
-                            </div>
-                        </div>
-                        <div class="like-list">
-                            <ul class="yui3-g">
-                                <li class="yui3-u-1-4">
-                                    <div class="list-wrap">
-                                        <div class="p-img">
-                                            <img src="img/_/itemlike01.png" />
-                                        </div>
-                                        <div class="attr">
-                                            <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
-                                        </div>
-                                        <div class="price">
-                                            <strong>
-											<em>¥</em>
-											<i>3699.00</i>
-										</strong>
-                                        </div>
-                                        <div class="commit">
-                                            <i class="command">已有6人评价</i>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="yui3-u-1-4">
-                                    <div class="list-wrap">
-                                        <div class="p-img">
-                                            <img src="img/_/itemlike02.png" />
-                                        </div>
-                                        <div class="attr">
-                                            <em>Apple苹果iPhone 6s/6s Plus 16G 64G 128G</em>
-                                        </div>
-                                        <div class="price">
-                                            <strong>
-											<em>¥</em>
-											<i>4388.00</i>
-										</strong>
-                                        </div>
-                                        <div class="commit">
-                                            <i class="command">已有700人评价</i>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="yui3-u-1-4">
-                                    <div class="list-wrap">
-                                        <div class="p-img">
-                                            <img src="img/_/itemlike03.png" />
-                                        </div>
-                                        <div class="attr">
-                                            <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
-                                        </div>
-                                        <div class="price">
-                                            <strong>
-											<em>¥</em>
-											<i>4088.00</i>
-										</strong>
-                                        </div>
-                                        <div class="commit">
-                                            <i class="command">已有700人评价</i>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="yui3-u-1-4">
-                                    <div class="list-wrap">
-                                        <div class="p-img">
-                                            <img src="img/_/itemlike04.png" />
-                                        </div>
-                                        <div class="attr">
-                                            <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
-                                        </div>
-                                        <div class="price">
-                                            <strong>
-											<em>¥</em>
-											<i>4088.00</i>
-										</strong>
-                                        </div>
-                                        <div class="commit">
-                                            <i class="command">已有700人评价</i>
-                                        </div>
-                                    </div>
-                                </li>
-
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -557,6 +430,92 @@ $(function(){
 		</div>
 	</div>
 </div>
+
+<!--Vue脚本-->
+<script>
+        let vm=new Vue({
+            el:'#app',
+            data:{
+				table1:[           
+                 ],
+                
+                 table2:[           
+                 ]
+            },
+            // 方法
+            methods: {
+                init: function(){
+
+                    let _this=this
+                  axios.get('http://localhost:8080/getUserList1')
+                  .then((response) => {
+                    _this.table1=response.data;
+                    console.log(_this.table1);
+                    
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+
+                  axios.get('http://localhost:8080/getUserList2')
+                  .then((response) => {
+                    _this.table2=response.data;
+                    console.log(_this.table3);
+                    
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+
+                }, 
+				 clear:function(id){ 
+					 console.log('进入了方法');
+					 console.log('id='+id);
+					let _this=this 
+					const params=new URLSearchParams();
+					params.append('id',this.id);
+					axios.post('http://localhost:8080/putUpdateOrder1/'+id )
+					.then( (response)=> {						
+					})
+					.catch(function (error) {
+					});
+					axios.get('http://localhost:8080/getUserList2')
+                  .then((response) => {
+                    _this.table2=response.data;
+                    console.log(_this.table2);
+                    
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+                   
+                 },
+				 clear1:function(id){  
+					const params=new URLSearchParams();
+					params.append('id',this.id);
+					axios.post('http://localhost:8080/putChangeOrder', params)
+					.then( (response)=> {						
+					})
+					.catch(function (error) {
+					});
+					axios.get('http://localhost:8080/getUserList1')
+                  .then((response) => {
+                    _this.table1=response.data;
+                    console.log(_this.table1);
+                    
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+                   
+                 },
+				 
+            },
+            mounted() {
+                this.init();
+              },
+        });
+    </script>
 <!--页面底部END-->
 
 undefined
